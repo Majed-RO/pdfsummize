@@ -26,7 +26,6 @@ export async function generateSummaryFromOpenAI(pdfText: string) {
 			max_output_tokens: 1500
 		});
 
-		console.log(response.output_text);
 		return response.output_text;
 	} catch (error: any) {
 		// 429 == too many requests

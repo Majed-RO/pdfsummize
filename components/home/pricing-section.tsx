@@ -5,7 +5,8 @@ import Link from 'next/link';
 import React from 'react';
 import { MotionDiv, MotionSection } from '../common/motion-wrapper';
 import { containerVariants, itemVariants } from '@/lib/motions';
-import { Variant, Variants } from 'motion/react';
+import { Variants } from 'motion/react';
+import SubscriptionButton from '../common/subscription-button';
 
 type PricingPlan = {
 	name: string;
@@ -57,7 +58,8 @@ const PricingCard = ({
 	description,
 	items,
 	id,
-	paymentLink
+	paymentLink,
+	priceId
 }: PricingPlan) => {
 	const listVariant: Variants = {
 		hidden: { opacity: 0, x: -20 },
@@ -135,17 +137,11 @@ const PricingCard = ({
 					variants={listVariant}
 					className="space-y-2 flex justify-center w-full"
 				>
-					<Link
-						href={paymentLink}
-						className={cn(
-							'w-full rounded-full flex items-center justify-center gap-2 bg-linear-to-r from-rose-800 to-rose-500 hover:from-rose-500 hover:to-rose-800 text-white border-2 py-2',
-							id === 'pro'
-								? 'border-rose-900'
-								: 'border-rose-100 from-rose-400 to-rose-500'
-						)}
-					>
-						Buy Now <ArrowRight size={18} />
-					</Link>
+					<SubscriptionButton
+						planPaymentLink={paymentLink}
+            planPriceId={priceId}
+						planId={id}
+					/>
 				</MotionDiv>
 			</div>
 		</MotionDiv>

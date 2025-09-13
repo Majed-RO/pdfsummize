@@ -94,9 +94,6 @@ export async function generateSummaryFromGemini(pdfText: string) {
 			throw new Error('API response was malformed or empty.'); // Indicate that no valid summary text was retrieved
 		}
 
-		console.log('Generated Summary:');
-		console.log(generatedSummaryText);
-
 		return generatedSummaryText;
 	} catch (error: any) {
 		// The library handles different error statuses. We check for common ones.

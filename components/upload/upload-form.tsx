@@ -46,7 +46,8 @@ const UploadForm = () => {
 			showToast = true
 		} = options;
 
-		if (showToast) CustomToast(title, description, icon, className);
+		if (showToast)
+			CustomToast(title, { description, icon, className });
 
 		setMessages((prev: Message[]) => [
 			...prev,

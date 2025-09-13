@@ -6,6 +6,8 @@ import Footer from '@/components/common/footer';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from 'sonner';
 import { ORIGIN_URL } from '@/lib/helpers';
+import PaymentAlert from '@/components/common/payment-alert';
+import { Suspense } from 'react';
 
 /* import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
 import { extractRouterConfig } from 'uploadthing/server';
@@ -19,18 +21,19 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
 	title: 'PDFSummize',
-	description: 'Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology',
-  openGraph: {
-    images: [
-      {
-        url: '/opengraph-image.png'
-      }
-    ]
-  },
-  metadataBase: new URL(ORIGIN_URL!),
-  alternates: {
-    canonical: ORIGIN_URL
-  }
+	description:
+		'Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology',
+	openGraph: {
+		images: [
+			{
+				url: '/opengraph-image.png'
+			}
+		]
+	},
+	metadataBase: new URL(ORIGIN_URL!),
+	alternates: {
+		canonical: ORIGIN_URL
+	}
 };
 
 export default function RootLayout({
@@ -47,6 +50,16 @@ export default function RootLayout({
 					<div className="relative flex flex-col min-h-screen">
 						<Header />
 						<main className="flex-1">
+							<div className="container">
+                {/* wrap the component in a Suspense boundary. This tells Next.js to delay the rendering of this component until the browser is ready, preventing the server from trying to prerender it.  */}
+								<Suspense
+									fallback={
+										null
+									}
+								>
+									<PaymentAlert />
+								</Suspense>
+							</div>
 							{/* <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} /> */}
 							{children}
 						</main>

@@ -1,11 +1,16 @@
+import { isDev } from '@/lib/helpers';
 import {
 	handleCheckoutSessionCompleted,
-  handleSubscriptionDeleted
+	handleSubscriptionDeleted
 } from '@/lib/payments';
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+const stripe = new Stripe(
+	isDev
+		? process.env.STRIPE_SECRET_KEY_TEST!
+		: process.env.STRIPE_SECRET_KEY_LIVE!
+);
 
 export const POST = async (req: NextRequest) => {
 	const payload = await req.text();
@@ -13,7 +18,9 @@ export const POST = async (req: NextRequest) => {
 
 	let event;
 
-	const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+	const endpointSecret = isDev
+		? process.env.STRIPE_WEBHOOK_SECRET_TEST!
+		: process.env.STRIPE_WEBHOOK_SECRET_LIVE!;
 
 	try {
 		event = stripe.webhooks.constructEvent(
@@ -21,8 +28,6 @@ export const POST = async (req: NextRequest) => {
 			sig!,
 			endpointSecret
 		);
-
-    
 
 		switch (event.type) {
 			case 'checkout.session.completed':

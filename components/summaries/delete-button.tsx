@@ -24,17 +24,16 @@ export default function DeleteButton({ summaryId }: DeleteButtonProps) {
 	const [isPending, startTransition] = React.useTransition();
 
 	const handleDelete = async (event: React.FormEvent) => {
-    // lets you render a part of the UI in the background.
+		// lets you render a part of the UI in the background.
 		startTransition(async () => {
 			const deletedSummary = await deleteSummaryAction({
 				summaryId
 			});
 
 			if (!deletedSummary.success) {
-				CustomToast(
-					'Error',
-					'Failed to delete summary'
-				);
+				CustomToast('Error', {
+					description: 'Failed to delete summary'
+				});
 			}
 			setOpen(false);
 		});
@@ -91,7 +90,9 @@ export default function DeleteButton({ summaryId }: DeleteButtonProps) {
 								</Button>
 							</DialogClose>
 							<Button type="submit">
-								{isPending ? 'Deleting...'  : 'DELETE'}
+								{isPending
+									? 'Deleting...'
+									: 'DELETE'}
 							</Button>
 						</DialogFooter>
 					</form>

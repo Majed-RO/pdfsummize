@@ -24,7 +24,12 @@ export default function Header() {
 			</div>
 
 			<div className="hidden sm:flex lg:justify-center gap-4 lg:gap-12 lg:items-center">
-				<NavLink href="/#pricing" className='hidden sm:block'>Pricing</NavLink>
+				<NavLink
+					href="/#pricing"
+					className="hidden sm:block"
+				>
+					Pricing
+				</NavLink>
 				<SignedIn>
 					<NavLink href="/dashboard">
 						Your Summaries
@@ -36,10 +41,19 @@ export default function Header() {
 				<SignedIn>
 					<div className="flex gap-2 items-center">
 						<NavLink href="/upload">
-            <div  className='flex items-center'>
-
-							<span className='text-sm hidden sm:inline-block'>Upload PDF</span> <Upload className='ml-1 w-4 h-4' color='red'  strokeWidth={2}/>
-            </div>
+							<div className="flex items-center">
+								<span className="text-sm hidden sm:inline-block">
+									Upload
+									PDF
+								</span>{' '}
+								<Upload
+									className="ml-1 w-4 h-4"
+									color="red"
+									strokeWidth={
+										2
+									}
+								/>
+							</div>
 						</NavLink>
 						<PlanBadge />
 						<UserButton />
@@ -47,9 +61,9 @@ export default function Header() {
 				</SignedIn>
 
 				<SignedOut>
-						<NavLink href="/sign-in">
-							Sign In
-						</NavLink>
+					<NavLink href="/sign-in">
+						Sign In
+					</NavLink>
 				</SignedOut>
 
 				<div></div>

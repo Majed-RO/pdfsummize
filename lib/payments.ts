@@ -10,8 +10,6 @@ export async function handleCheckoutSessionCompleted({
 }) {
 	const sql = await getDbConnection();
 
-	console.log('Checkout session completed', session);
-
 	const customerId = session.customer as string;
 	const priceId = session.line_items?.data[0]?.price?.id;
 
@@ -63,11 +61,6 @@ async function createOrUpdateUser({
 			// there is a user with this email, then update customer id,  status and price_id
 			const updatedUser =
 				await sql`UPDATE users SET status = 'active', customer_id = ${customerId}, price_id = ${priceId} WHERE email = ${email}`;
-
-			console.log(
-				'updatedUser in createOrUpdateUser //// :',
-				updatedUser
-			);
 		}
 	} catch (error) {
 		console.error('Error creating or updating user', error);
@@ -101,29 +94,15 @@ export async function handleSubscriptionDeleted({
 	subscriptionId: string;
 	stripe: Stripe;
 }) {
-	console.log('subscription deleted', subscriptionId);
-
 	try {
 		const subscription = await stripe.subscriptions.retrieve(
 			subscriptionId
-		);
-
-		console.log(
-			'Subscription IN handleSubscriptionDeleted ',
-			subscription
-		);
-
-		console.log(
-			'customer IN handleSubscriptionDeleted ',
-			subscription.customer
 		);
 
 		const sql = await getDbConnection();
 
 		const updatedUser =
 			await sql`UPDATE users SET status = 'cancelled', price_id = '' WHERE customer_id = ${subscription.customer}`;
-
-		console.log('updatedUser in createPayment //// :', updatedUser);
 
 		console.log('Subscription canceled successfully');
 	} catch (error) {
