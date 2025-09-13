@@ -1,5 +1,4 @@
 import { FileText, Upload } from 'lucide-react';
-import { Button } from '../ui/button';
 import NavLink from './nav-link';
 import { SITE_PREFIX, SITE_SUFFIX } from '@/lib/constants';
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
