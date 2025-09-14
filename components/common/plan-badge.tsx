@@ -1,31 +1,18 @@
-import { getPriceIdForActiveUser } from '@/lib/user';
-import { currentUser } from '@clerk/nextjs/server';
+'use client';
+// import { getPriceIdForActiveUser } from '@/lib/user';
+// import { currentUser } from '@clerk/nextjs/server';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Crown } from 'lucide-react';
-import { plans } from '@/lib/constants';
+// import { plans } from '@/lib/constants';
 
-export default async function PlanBadge() {
-	const user = await currentUser();
-
-	if (!user?.id) return null;
-
-	const email = user?.emailAddresses?.[0]?.emailAddress;
-
-	let priceId: string | null = null;
-
-	if (email) {
-		priceId = await getPriceIdForActiveUser(email);
-	}
-
-	let planName = 'Buy a plan';
-
-	const plan = plans.find(plan => plan.priceId === priceId);
-
-	if (plan) {
-		planName = plan.name;
-	}
-
+export default async function PlanBadge({
+	priceId,
+	planName
+}: {
+	priceId: string;
+	planName: string;
+}) {
 	return (
 		<Badge
 			variant="outline"
