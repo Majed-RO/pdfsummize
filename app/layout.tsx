@@ -43,7 +43,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<ClerkProvider>
-			<html lang="en">
+			<html lang="en" data-scroll-behavior="smooth">
 				<body
 					className={`${fontSans.variable} font-sans antialiased`}
 				>

@@ -179,6 +179,10 @@
 			@apply hover:cursor-pointer bg-rose-600 hover:bg-rose-700;
 		}
 
+		/* #pricing {
+			scroll-margin-top: 80px; 
+		} */
+
 		@keyframes gradient-x {
 			0%,
 			100% {

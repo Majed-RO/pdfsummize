@@ -23,7 +23,8 @@ const PricingSection = () => {
 		<MotionSection
 			variants={containerVariants}
 			initial="hidden"
-			whileInView="visible"
+      animate={'visible'}
+			// whileInView="visible"
 			viewport={{ once: true, margin: '-100px' }}
 			className="relative overflow-hidden"
 			id="pricing"

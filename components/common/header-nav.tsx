@@ -3,7 +3,7 @@
 import React from 'react';
 import NavLink from './nav-link';
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
-import { Crown, DollarSign, Files, Upload } from 'lucide-react';
+import { Crown, DollarSign, Files, Tag, Upload } from 'lucide-react';
 // import PlanBadge from './plan-badge';
 import { Badge } from '../ui/badge';
 import { cn } from '@/lib/utils';
@@ -19,32 +19,40 @@ const HeaderNav = ({
 		<div className="flex items-center justify-between gap-4 lg:gap-12 overflow-hidden">
 			{/* <div className="hidden sm:flex lg:justify-center gap-4 lg:gap-12 lg:items-center"> */}
 			{/* <div> */}
-			<NavLink href="/#pricing" className="flex items-center">
-				<SignedIn>
+			<SignedIn>
+				<NavLink
+					href="/#pricing"
+					className="flex items-center"
+          label='Pricing'
+				>
 					<span className="hidden sm:inline-block">
 						Pricing
 					</span>
-					<DollarSign
-						className="ml-1 w-4 h-4 sm:hidden"
-						// strokeWidth={2}
-					/>
-				</SignedIn>
-				<SignedOut>
+					<Tag className="ml-1 w-4 h-4 sm:hidden" />
+				</NavLink>
+			</SignedIn>
+			<SignedOut>
+				<NavLink
+					href="/#pricing"
+					className="flex items-center"
+          label='Pricing'
+
+				>
 					<span className="">Pricing</span>
-				</SignedOut>
-			</NavLink>
+				</NavLink>
+			</SignedOut>
+
 			<SignedIn>
 				<NavLink
 					href="/dashboard"
 					className="flex items-center "
+          label='Your Summaries'
+
 				>
 					<span className="hidden sm:inline-block">
 						Your Summaries
 					</span>
-					<Files
-						className="ml-1 w-4 h-4 sm:hidden"
-						// strokeWidth={2}
-					/>
+					<Files className="ml-1 w-4 h-4 sm:hidden" />
 				</NavLink>
 			</SignedIn>
 			{/* </div> */}
@@ -52,7 +60,7 @@ const HeaderNav = ({
 			{/* <div className="flex lg:justify-end lg:flex-1"> */}
 			<SignedIn>
 				<div className="flex items-center gap-4 lg:gap-12">
-					<NavLink href="/upload">
+					<NavLink href="/upload" label='Upload'>
 						<div className="flex items-center">
 							<span className="text-sm hidden sm:inline-block">
 								Upload PDF
@@ -88,7 +96,7 @@ const HeaderNav = ({
 			</SignedIn>
 
 			<SignedOut>
-				<NavLink href="/sign-in">Sign In</NavLink>
+				<NavLink href="/sign-in" label='Sign In'>Sign In</NavLink>
 			</SignedOut>
 			{/* </div> */}
 		</div>
