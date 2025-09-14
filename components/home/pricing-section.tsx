@@ -1,7 +1,6 @@
 import { plans } from '@/lib/constants';
 import { cn } from '@/lib/utils';
-import { ArrowRight, CheckIcon } from 'lucide-react';
-import Link from 'next/link';
+import {  CheckIcon } from 'lucide-react';
 import React from 'react';
 import { MotionDiv, MotionSection } from '../common/motion-wrapper';
 import { containerVariants, itemVariants } from '@/lib/motions';

@@ -1,4 +1,5 @@
 import BgGradient from '@/components/common/bg-gradient';
+import ScrollToTopButton from '@/components/common/scroll-to-top-button';
 import ToastPlacer from '@/components/common/toast-placer';
 import CTASection from '@/components/home/cta-section';
 import DemoSection from '@/components/home/demo-section';
@@ -22,6 +23,7 @@ export default async function Home() {
 
 				<CTASection />
 			</div>
+      <ScrollToTopButton />
 		</div>
 	);
 }
